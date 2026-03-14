@@ -4,18 +4,17 @@ server:
 spring:
   cloud:
     gateway:
-      server:
-        webmvc:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
-          routes:
-            - id: movie-order-status
-              uri: lb://movieService
-              predicates:
-                - Path=/movies/**
-            - id: booking-service-route
-              uri: lb://bookingService
-              predicates:
-                - Path=/bookings/**
+      mvc:
+        discovery:
+          locator:
+            enabled: true
+            lower-case-service-id: true
+        routes:
+          - id: movie-service-route
+            uri: lb://movieService
+            predicates:
+              - Path=/movies/**
+          - id: booking-service-route
+            uri: lb://bookingService
+            predicates:
+              - Path=/bookings/**
